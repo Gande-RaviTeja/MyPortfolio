@@ -154,7 +154,6 @@
             width: 100%;
         }
 
-
         .hero-tag {
             display: inline-flex;
             align-items: center;
@@ -254,24 +253,24 @@
             transform: translateY(-2px);
         }
 
-      .hero-photo-wrap {
-    position: relative;
-    width: 260px;
-    height: 260px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        .hero-photo-wrap {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-       .hero-photo-wrap::before {
-    content: '';
-    position: absolute;
-    width: 310px;
-    height: 310px;
-    border-radius: 50%;
-    background: conic-gradient(var(--blue), var(--purple), var(--cyan), var(--blue));
-    animation: spin 6s linear infinite;
-}
+        .hero-photo-wrap::before {
+            content: '';
+            position: absolute;
+            width: 310px;
+            height: 310px;
+            border-radius: 50%;
+            background: conic-gradient(var(--blue), var(--purple), var(--cyan), var(--blue));
+            animation: spin 6s linear infinite;
+        }
 
         @keyframes spin {
             to {
@@ -279,38 +278,22 @@
             }
         }
 
-      .hero-photo-wrap::after {
-    content: '';
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: var(--bg);
-}
-
-       .hero-photo {
-    width: 290px;
-    height: 290px;
-    border-radius: 50%;
-    object-fit: cover;
-    position: relative;
-    z-index: 1;
-}
-
-        .hero-photo-placeholder {
-            width: 200px;
-            height: 200px;
+        .hero-photo-wrap::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #1a2236, #1e2d45);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: var(--bg);
+        }
+
+        .hero-photo {
+            width: 290px;
+            height: 290px;
+            border-radius: 50%;
+            object-fit: cover;
             position: relative;
             z-index: 1;
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 48px;
-            color: var(--blue);
         }
 
         /* ABOUT */
@@ -368,9 +351,10 @@
             margin-top: 24px;
         }
 
+
         .stat-num {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
             font-size: 32px;
             color: var(--blue);
         }
@@ -382,7 +366,7 @@
             letter-spacing: 0.1em;
         }
 
-        /* ── SKILLS (Updated) ── */
+        /* SKILLS */
         #skills {
             padding: 100px 60px;
             background: rgba(255, 255, 255, 0.01);
@@ -447,7 +431,8 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
-            min-height: 300px;
+            align-items: start;
+            /* prevents grid rows from stretching cards */
         }
 
         .skill-card {
@@ -463,6 +448,10 @@
             transition: all 0.3s ease;
             cursor: default;
             animation: cardIn 0.35s ease both;
+            height: 160px;
+            /* fixed height — same for all cards */
+            min-height: 160px;
+            cursor:pointer;
         }
 
         @keyframes cardIn {
@@ -564,7 +553,7 @@
             margin-top: 1px;
         }
 
-        /* ── PROJECTS (Updated) ── */
+        /* ── PROJECTS (Fixed alignment) ── */
         #projects {
             padding: 100px 60px;
             background: rgba(255, 255, 255, 0.01);
@@ -603,17 +592,25 @@
             border-color: var(--blue);
         }
 
+        /* KEY FIX: grid container always stays as 2-col grid */
         #projects-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
 
+        /* Cards are hidden via this class — display:none removes from grid flow */
         .project-card-wrapper {
             transition: all 0.4s ease;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
+            /* default: visible as grid item */
+        }
+
+        /* Hidden cards fully removed from grid flow */
+        .project-card-wrapper.hidden {
+            display: none;
         }
 
         .project-card-wrapper:hover {
@@ -650,12 +647,6 @@
             box-shadow: 0 20px 50px rgba(167, 139, 250, 0.14);
         }
 
-        .project-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
         .project-icon {
             width: 42px;
             height: 42px;
@@ -676,14 +667,20 @@
             color: var(--purple);
         }
 
-        .project-link {
-            color: var(--muted);
-            font-size: 16px;
-            transition: color 0.2s;
+        .project-top {
+            display: flex;
+            align-items: center;
         }
 
-        .project-link:hover {
-            color: var(--text);
+        .project-links {
+            margin-left: auto;
+            display: flex;
+            gap: 12px;
+            color: white;
+        }
+
+        .project-links a {
+            color: white !important;
         }
 
         .project-name {
@@ -803,15 +800,21 @@
             border-radius: 16px;
             padding: 28px;
             transition: all 0.25s;
+            cursor: pointer;
         }
 
         .edu-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
+            /* border-color: rgba(3, 84, 246, 0.15); */
+             background: rgba(15, 23, 42, 0.8);
+            border-color: rgba(20, 184, 166, 0.45);
+            box-shadow: 0 8px 28px rgba(20, 184, 166, 0.12);
         }
 
+
+
         .edu-score {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
             font-size: 36px;
             margin-bottom: 6px;
         }
@@ -856,6 +859,14 @@
             display: flex;
             gap: 14px;
             align-items: flex-start;
+            cursor: pointer;
+        }
+
+         .ach-card:hover {
+            /* border-color: rgba(3, 84, 246, 0.15); */
+             background: rgba(15, 23, 42, 0.8);
+            border-color: rgba(20, 184, 166, 0.45);
+            box-shadow: 0 8px 28px rgba(20, 184, 166, 0.12);
         }
 
         .ach-num {
@@ -910,6 +921,60 @@
             transform: translateY(0);
         }
 
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 10px;
+            top: 100%;
+            padding-top: 12px;
+            z-index: 1000;
+        }
+
+        .dropdown-menu {
+            background: var(--panel);
+            min-width: 200px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .dropdown-menu a {
+            padding: 0.8rem 1rem;
+            display: flex !important;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--muted) !important;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(18, 2, 158, 0.2);
+            color: var(--text) !important;
+            padding-left: 1.2rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .hero-btn.secondary:hover {
+            background: rgba(18, 2, 158, 0.2);
+        }
+
         @media (max-width: 900px) {
             .skills-layout {
                 flex-direction: column;
@@ -930,57 +995,6 @@
             #skills-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-        }
-
-         .dropdown { position: relative; display: inline-block; }
-        
-        /* The content wrapper with a 'bridge' to prevent hover loss */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            left: 10px;
-            top: 100%;
-            padding-top: 12px; /* Invisible bridge */
-            z-index: 1000;
-        }
-
-        /* The actual visible menu box */
-        .dropdown-menu {
-            background: var(--panel);
-            min-width: 200px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            
-        }
-
-
-
-        .dropdown-menu a {
-            padding: 0.8rem 1rem;
-            display: flex !important;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: var(--muted) !important;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid var(--border);
-            text-decoration: none;
-        }
-
-        .dropdown-menu a:last-child { border-bottom: none; }
-
-        .dropdown-menu a:hover {
-            background: rgba(18, 2, 158, 0.2);
-            color: var(--text) !important;
-            padding-left: 1.2rem;
-        }
-
-        .dropdown:hover .dropdown-content { display: block;  }
-        .fa-chevron-down:before {content: "\f078";}
-        .hero-btn.secondary:hover{
-             background: rgba(18, 2, 158, 0.2);
         }
 
         @media (max-width: 768px) {
@@ -1029,8 +1043,6 @@
                 gap: 16px;
                 text-align: center;
             }
-
-
         }
     </style>
 </head>
@@ -1073,20 +1085,20 @@
                             class="fab fa-github"></i> GitHub</a>
                     <a href="https://linkedin.com/in/Gande-RaviTeja" target="_blank" class="hero-btn secondary"><i
                             class="fab fa-linkedin"></i> LinkedIn</a>
-                   
-                     <div class="dropdown">
-                    <a href="#" class="hero-btn secondary" onclick="return false;">Resume <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
-                    <div class="dropdown-content">
-                        <div class="dropdown-menu">
-                            <a href="Gande_RaviTeja_Resume.pdf" target="_blank">
-                                <i class="fas fa-code" style="color: var(--brand);"></i> Software Resume
-                            </a>
-                            <a href="Gande Ravi Teja_EmbeddedDeveloper.pdf" target="_blank">
-                                <i class="fas fa-microchip" style="color: var(--brand-2);"></i> Hardware Resume
-                            </a>
+                    <div class="dropdown">
+                        <a href="#" class="hero-btn secondary" onclick="return false;">Resume <i
+                                class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-menu">
+                                <a href="Gande_RaviTeja_Resume.pdf" target="_blank">
+                                    <i class="fas fa-code" style="color: var(--brand);"></i> Software Resume
+                                </a>
+                                <a href="Gande Ravi Teja_EmbeddedDeveloper.pdf" target="_blank">
+                                    <i class="fas fa-microchip" style="color: var(--brand-2);"></i> Hardware Resume
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
             <div class="hero-photo-wrap">
@@ -1122,30 +1134,26 @@
                     </div>
                     <div class="stat">
                         <div class="stat-num" style="color:var(--green)">2026</div>
-                        <div class="stat-label">Intern @ Finestesis</div>
+                        <div class="stat-label">Intern @ Finsentsis</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SKILLS (Updated) -->
+    <!-- SKILLS -->
     <section id="skills">
         <div class="skills-inner">
             <div class="section-label">Technical Arsenal</div>
             <div class="skills-layout fade-up">
-                <!-- Sidebar Categories -->
                 <div class="skills-sidebar">
                     <button class="skill-category-btn active" data-category="programming">Programming</button>
                     <button class="skill-category-btn" data-category="web">Web Technologies</button>
                     <button class="skill-category-btn" data-category="core">Core Concepts</button>
                     <button class="skill-category-btn" data-category="tools">Tools</button>
                 </div>
-                <!-- Skills Grid -->
                 <div class="skills-display">
-                    <div id="skills-grid">
-                        <!-- Populated by JS -->
-                    </div>
+                    <div id="skills-grid"></div>
                 </div>
             </div>
         </div>
@@ -1157,7 +1165,7 @@
         <div class="exp-card fade-up">
             <div class="exp-header">
                 <div>
-                    <div class="exp-company">Finestesis</div>
+                    <div class="exp-company">Finsentsis</div>
                     <div class="exp-role">Full Stack Developer (Intern) · Feb 2026 – Present</div>
                 </div>
                 <div class="exp-badge">● Active</div>
@@ -1173,7 +1181,7 @@
         </div>
     </section>
 
-    <!-- PROJECTS (Updated) -->
+    <!-- PROJECTS -->
     <section id="projects">
         <div class="projects-inner">
             <div class="section-label">Projects</div>
@@ -1184,12 +1192,21 @@
             </div>
             <div id="projects-container">
 
-                <a class="project-card-wrapper fade-up" data-type="software"
-                    href="https://ganderaviteja.github.io/TCB_TeluguCinemaBase/" target="_blank">
+                <div class="project-card-wrapper fade-up" data-type="software"
+                    onclick="window.open('https://ganderaviteja.github.io/TCB_TeluguCinemaBase/', '_blank')">
                     <div class="project-card-inner">
                         <div class="project-top">
                             <div class="project-icon sw"><i class="fas fa-film"></i></div>
-                            <span class="project-link"><i class="fas fa-arrow-up-right-from-square"></i></span>
+                            <div class="project-links">
+                                <a href="https://ganderaviteja.github.io/TCB_TeluguCinemaBase/" target="_blank"
+                                    class="project-link" onclick="event.stopPropagation()">
+                                    <i class="fas fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="https://github.com/GandeRaviteja/TCB_TeluguCinemaBase" target="_blank"
+                                    class="project-link" onclick="event.stopPropagation()">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="project-name">Movie Finder Web App</div>
                         <div class="project-desc">A movie discovery application allowing users to search Telugu movies
@@ -1200,14 +1217,20 @@
                             <span class="tag sw">JavaScript</span><span class="tag sw">REST APIs</span>
                         </div>
                     </div>
-                </a>
+                </div>
 
-                <a class="project-card-wrapper fade-up" data-type="software" href="https://github.com/GandeRaviteja"
-                    target="_blank">
+                <div class="project-card-wrapper fade-up" data-type="software">
                     <div class="project-card-inner">
                         <div class="project-top">
-                            <div class="project-icon sw"><i class="fas fa-store"></i></div>
-                            <span class="project-link"><i class="fab fa-github"></i></span>
+                            <div class="project-icon sw"><i class="fas fa-shopping-cart"></i></div>
+                            <div class="project-links">
+                                <a href="" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                                    <i class="fas fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="project-name">Pooja Samagri E-Commerce Platform</div>
                         <div class="project-desc">Full-stack e-commerce platform for purchasing pooja samagri and
@@ -1218,14 +1241,20 @@
                             <span class="tag sw">MongoDB</span><span class="tag green">In Dev</span>
                         </div>
                     </div>
-                </a>
+                </div>
 
-                <a class="project-card-wrapper hardware fade-up" data-type="hardware"
-                    href="https://github.com/GandeRaviteja" target="_blank">
+                <div class="project-card-wrapper hardware fade-up" data-type="hardware">
                     <div class="project-card-inner">
                         <div class="project-top">
                             <div class="project-icon hw"><i class="fas fa-car"></i></div>
-                            <span class="project-link"><i class="fab fa-github"></i></span>
+                            <div class="project-links">
+                                <a href="" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="project-name">WiFi Controlled RC Car</div>
                         <div class="project-desc">A NodeMCU-based RC car controlled over Wi-Fi using a smartphone or web
@@ -1236,14 +1265,20 @@
                             <span class="tag hw">Wi-Fi Control</span><span class="tag hw">Robotics</span>
                         </div>
                     </div>
-                </a>
+                </div>
 
-                <a class="project-card-wrapper hardware fade-up" data-type="hardware"
-                    href="https://github.com/GandeRaviteja" target="_blank">
+                <div class="project-card-wrapper hardware fade-up" data-type="hardware">
                     <div class="project-card-inner">
                         <div class="project-top">
-                            <div class="project-icon hw"><i class="fas fa-cow"></i></div>
-                            <span class="project-link"><i class="fab fa-github"></i></span>
+                            <div class="project-icon hw"><i class="fas fa-satellite-dish"></i></div>
+                            <div class="project-links">
+                                <a href="" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="project-name">Cattle Monitoring System</div>
                         <div class="project-desc">IoT-based system using LoRaWAN and sensors to track cattle health,
@@ -1254,14 +1289,20 @@
                             <span class="tag hw">IoT</span><span class="tag hw">Real-time</span>
                         </div>
                     </div>
-                </a>
+                </div>
 
-                <a class="project-card-wrapper hardware fade-up" data-type="hardware"
-                    href="https://github.com/GandeRaviteja" target="_blank">
+                <div class="project-card-wrapper hardware fade-up" data-type="hardware">
                     <div class="project-card-inner">
                         <div class="project-top">
                             <div class="project-icon hw"><i class="fas fa-robot"></i></div>
-                            <span class="project-link"><i class="fab fa-github"></i></span>
+                            <div class="project-links">
+                                <a href="" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="project-name">Line-Following Robot</div>
                         <div class="project-desc">A robot using IR sensors to detect and follow a black or white line
@@ -1272,7 +1313,7 @@
                             <span class="tag hw">Autonomous</span>
                         </div>
                     </div>
-                </a>
+                </div>
 
             </div>
         </div>
@@ -1389,12 +1430,19 @@
         }, { threshold: 0.1 });
         fadeEls.forEach(el => observer.observe(el));
 
-        // Project filtering
+        // ── PROJECT FILTERING (Fixed) ──
+        // Uses CSS class 'hidden' (display:none) instead of inline style
+        // so the CSS grid properly reflows cards into 2-column layout
         function filterProjects(type, btn) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+
             document.querySelectorAll('.project-card-wrapper').forEach(card => {
-                card.style.display = (type === 'all' || card.dataset.type === type) ? 'block' : 'none';
+                if (type === 'all' || card.dataset.type === type) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
             });
         }
 
@@ -1417,7 +1465,7 @@
                 { icon: 'fas fa-exchange-alt', color: '#22d3ee', label: 'REST APIs' },
             ],
             core: [
-                { label: 'OOPS', icon: 'fas fa-cube', color: 'text-indigo-400' },
+                { label: 'OOPS', icon: 'fas fa-cube', color: '#818cf8' },
                 { icon: 'fas fa-code-branch', color: '#4f9ef8', label: 'DSA' },
                 { icon: 'fas fa-microchip', color: '#a78bfa', label: 'Embedded Systems' },
             ],
@@ -1425,10 +1473,6 @@
                 { icon: 'fab fa-git-alt', color: '#f97316', label: 'Git' },
                 { icon: 'fab fa-github', color: '#e8edf3', label: 'GitHub' },
                 { icon: 'fas fa-cloud', color: '#fb923c', label: 'AWS' },
-            ],
-            Databases: [
-                { icon: 'fas fa-database', color: '#34d399', label: 'MongoDB' },
-                { icon: 'fas fa-database', color: '#4f9ef8', label: 'MySQL' },
             ],
         };
 
@@ -1441,14 +1485,13 @@
                 card.className = 'skill-card';
                 card.style.animationDelay = `${i * 0.06}s`;
                 card.innerHTML = `
-                <i class="${skill.icon}" style="color:${skill.color}"></i>
-                <span>${skill.label}</span>
-            `;
+                    <i class="${skill.icon}" style="color:${skill.color}"></i>
+                    <span>${skill.label}</span>
+                `;
                 grid.appendChild(card);
             });
         }
 
-        // Skills category switching
         document.querySelectorAll('.skill-category-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.skill-category-btn').forEach(b => b.classList.remove('active'));
@@ -1457,7 +1500,6 @@
             });
         });
 
-        // Initial render
         renderSkills('programming');
     </script>
 </body>
